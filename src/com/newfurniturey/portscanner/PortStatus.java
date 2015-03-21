@@ -1,6 +1,6 @@
 package com.newfurniturey.portscanner;
 
-final class PortStatus {
+public final class PortStatus {
     private final int port;
     private final boolean isOpen;
     
