@@ -10,17 +10,21 @@ class PortScanner {
         final String host = args[0];
         
         for (int port = 1; port <= 65535; port++) {
+            if (scanPort(host, port, timeout)) {
+                System.out.printf("Port %d is open%n", port);
+            }
+        }
+    }
+    
+    public static boolean scanPort(final String host, final int port, final int timeout) {
             try {
                 Socket socket = new Socket();
                 socket.connect(new InetSocketAddress(host, port), timeout);
                 socket.close();
-                
-                // if we made it here, the port is open!
-                System.out.printf("Port %d is open%n", port);
+                return true;
             } catch (Exception e) {
-                // safely ignore... port is closed
+                return false;
             }
-        }
     }
     
 }
